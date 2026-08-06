@@ -637,11 +637,26 @@
   .border-slate-500 {
     border-color: var(--color-slate-500);
   }
+  .bg-\[\#591093\] {
+    background-color: #591093;
+  }
   .bg-\[\#D4AF37\] {
     background-color: #D4AF37;
   }
   .bg-\[\#F3EAFB\] {
     background-color: #F3EAFB;
+  }
+  .bg-\[\#\] {
+    background-color: #;
+  }
+  .bg-\[\#d4a0ff\] {
+    background-color: #d4a0ff;
+  }
+  .bg-\[\#e4c4fd\] {
+    background-color: #e4c4fd;
+  }
+  .bg-\[\#e4c4ff\] {
+    background-color: #e4c4ff;
   }
   .bg-\[\#faf7ef\] {
     background-color: #faf7ef;
@@ -1165,6 +1180,10 @@
     .md\:text-lg {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+    .md\:text-sm {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
     }
     .md\:text-xl {
       font-size: var(--text-xl);
