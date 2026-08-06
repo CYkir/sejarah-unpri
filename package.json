@@ -1,0 +1,12 @@
+{
+  "name": "unpri",
+  "description": "Sejarah UNPRI - infografis",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "scripts": {
+    "build": "tailwindcss -i ./input.css -o ./output.css",
+    "watch": "tailwindcss -i ./input.css -o ./output.css --watch"
+  }
+}

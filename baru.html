@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+  /* =========================================================
+     UNPRI HISTORY (INLINE, MOBILE-FIRST)
+     ========================================================= */
+  .unpri-history {
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  /* Top banner (keeps your existing image) */
+  .unpri-history__hero {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+    background: #0b0b0f;
+  }
+  .unpri-history__hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .unpri-history__hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(180deg, rgba(89,16,147,.65), rgba(89,16,147,.10), rgba(255,255,255,1));
+    pointer-events:none;
+  }
+
+  /* Container */
+  .unpri-history__wrap{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 16px 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header card */
+  .unpri-history__head{
+    margin-top: -24px;
+    background: #fff;
+    border: 1px solid rgba(110, 28, 162, .22);
+    box-shadow: 0 18px 32px rgba(0,0,0,.08);
+    padding: 18px 16px 16px;
+    position: relative;
+  }
+  .unpri-history__head::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width: 10px;
+    background: linear-gradient(180deg, #591093, #6E1CA2);
+    opacity: .18;
+  }
+
+  .unpri-history__kicker{
+    margin: 0 0 6px;
+    font-weight: 900;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: rgba(17,24,39,.72);
+  }
+  .unpri-history__title{
+    margin: 0 0 8px;
+    font-weight: 900;
+    font-size: clamp(26px, 4.2vw, 40px);
+    line-height: 1.05;
+    color: #591093;
+  }
+  .unpri-history__subtitle{
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #111827;
+    max-width: 78ch;
+  }
+  .unpri-history__subtitle strong{ color:#591093; font-weight: 900; }
+  .unpri-history__subtitle em{ color:#6E1CA2; font-weight: 800; font-style: italic; }
+
+  /* Make emphasis consistent across timeline items too */
+  .unpri-history__item strong{ font-weight: 900; color:#591093; }
+  .unpri-history__item em{ font-style: italic; font-weight: 800; color:#6E1CA2; }
+
+  /* Chips */
+  .unpri-history__chips{
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .unpri-history__chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(89,16,147,.06);
+    border: 1px solid rgba(89,16,147,.18);
+    color: #591093;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .unpri-history__chip::before{
+    content:"";
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background:#F7CB0C;
+    box-shadow: 0 0 0 3px rgba(247,203,12,.18);
+  }
+
+  /* Timeline */
+  .unpri-history__timeline{
+    margin-top: 18px;
+    position: relative;
+    padding-left: 18px;
+  }
+  .unpri-history__timeline::before{
+    content:"";
+    position:absolute;
+    left: 6px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(89,16,147,.85), rgba(110,28,162,.25));
+  }
+
+  .unpri-history__item{
+    position: relative;
+    margin: 0 0 14px;
+    padding: 14px 14px 14px 14px;
+    background: #fff;
+    border: 1px solid rgba(110, 28, 162, .18);
+    box-shadow: 0 10px 18px rgba(0,0,0,.06);
+  }
+  .unpri-history__item::before{
+    content:"";
+    position:absolute;
+    left: -18px;
+    top: 18px;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: #F7CB0C;
+    box-shadow: 0 0 0 4px rgba(89,16,147,.12);
+  }
+
+  .unpri-history__year{
+    display: inline-block;
+    font-weight: 900;
+    color: #591093;
+    font-size: 13px;
+    letter-spacing: .35px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .unpri-history__item h3{
+    margin: 0 0 6px;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #111827;
+    font-weight: 900;
+  }
+
+  .unpri-history__item p{
+    margin: 0;
+    font-size: 14.4px;
+    line-height: 1.75;
+    color: #111827;
+  }
+
+  /* List bullets inside timeline items */
+  .unpri-history__item ul{
+    margin: 8px 0 0;
+    padding-left: 18px;
+  }
+  .unpri-history__item li{
+    margin: 4px 0;
+    font-size: 14.2px;
+    line-height: 1.6;
+    color: #111827;
+  }
+
+  /* Bottom campuses card */
+  .unpri-history__campus{
+    margin-top: 18px;
+    background: linear-gradient(90deg, rgba(247,203,12,.18), rgba(89,16,147,.06));
+    border: 1px solid rgba(89,16,147,.14);
+    padding: 14px 14px 16px;
+  }
+  .unpri-history__campus h3{
+    margin: 0 0 10px;
+    font-weight: 900;
+    font-size: 16px;
+    color: #591093;
+  }
+  .unpri-history__campus img{
+    display:block;
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  /* as requested */
+  .unpri-history__campus strong{
+    font-weight: 900;
+    color:#591093;
+  }
+  .unpri-history__campus em{
+    font-style: italic;
+    font-weight: 800;
+    color:#6E1CA2;
+  }
+
+  /* Desktop polish */
+  @media (min-width: 768px){
+    .unpri-history__wrap{ padding: 24px 18px 70px; }
+    .unpri-history__head{ padding: 22px 22px 18px; }
+    .unpri-history__timeline{ padding-left: 26px; }
+    .unpri-history__timeline::before{ left: 9px; }
+    .unpri-history__item{ padding: 16px 18px; }
+    .unpri-history__item::before{ left: -26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior: auto !important; }
+  }
+</style>
+
+<section class="unpri-history">
+  <!-- HERO IMAGE -->
+  <div class="unpri-history__hero" aria-hidden="true">
+    <img
+      src="https://s3.amazonaws.com/assets.unprimdn.ac.id/images/landing_page_images/5244df4c02da595ca8ec4dd63514d407bc4facec.png"
+      alt=""
+    />
+  </div>
+
+  <div class="unpri-history__wrap">
+    <!-- HEADER -->
+    <div class="unpri-history__head">
+      <div class="unpri-history__kicker">Sejarah UNPRI</div>
+      <h2 class="unpri-history__title">Ringkasan Singkat Universitas Prima Indonesia (UNPRI)</h2>
+      <p class="unpri-history__subtitle">
+        Sejak <strong>13 Oktober 2005</strong>, UNPRI tumbuh sebagai universitas <em>multikultural</em>, inklusif, dan progresif—
+        terus memperluas program, fasilitas, serta <strong>ekosistem pendidikan-kesehatan</strong> untuk mendukung pembelajaran, riset, dan kolaborasi.
+      </p>
+
+      <ul class="unpri-history__chips" aria-label="Sorotan">
+        <li class="unpri-history__chip">Berdiri 2005</li>
+        <li class="unpri-history__chip">12 Prodi saat Awal</li>
+        <li class="unpri-history__chip">Kampus Utama 23 Lantai (2021)</li>
+        <li class="unpri-history__chip">Akreditasi Institusi “Unggul” (2024)</li>
+        <li class="unpri-history__chip">QS Asia (2025)</li>
+      </ul>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="unpri-history__timeline" role="list" aria-label="Linimasa UNPRI">
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2005</span>
+        <h3>Pendirian Universitas Prima Indonesia</h3>
+        <p>
+          Pada <strong>13 Oktober 2005</strong>, UNPRI resmi berdiri berdasarkan Izin Menteri Pendidikan Nasional
+          No. <strong>151/D/0/2005</strong>. Momen ini menjadi awal perjalanan UNPRI sebagai universitas <em>multikultural</em>, inklusif,
+          dan progresif. Pada masa awal, UNPRI membuka <strong>12 program studi</strong> sebagai komitmen memajukan pendidikan tinggi di Indonesia:
+        </p>
+        <ul>
+          <li>S1 Kesehatan Masyarakat</li>
+          <li>D3 Keperawatan</li>
+          <li>S1 Ilmu Keperawatan</li>
+          <li>S1 Teknik Informatika</li>
+          <li>S1 Sistem Informasi</li>
+          <li>S1 Teknik Industri</li>
+          <li>S1 Teknik Elektro</li>
+          <li>D3 Keuangan dan Perbankan</li>
+          <li>S1 Manajemen</li>
+          <li>S1 Akuntansi</li>
+          <li>S1 Agroteknologi</li>
+          <li>S1 Agribisnis</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2006–2009</span>
+        <h3>Pembangunan Kampus Pertama</h3>
+        <p>
+          Pembangunan dan pengembangan kampus pertama UNPRI menjadi fase penting dalam pertumbuhan awal.
+          Fasilitas yang dibangun mencakup area akademik utama sebagai pusat kegiatan angkatan pertama mahasiswa UNPRI,
+          disertai pengembangan <strong>fasilitas olahraga</strong>.
+        </p>
+        <p style="margin-top:8px;">
+          Pada periode ini, UNPRI membuka program studi:
+        </p>
+        <ul>
+          <li>S1 Pendidikan Bahasa dan Sastra Indonesia</li>
+          <li>S1 Pendidikan Bahasa Inggris</li>
+          <li>S1 Pendidikan Dokter</li>
+          <li>S1 Pendidikan Dokter Gigi</li>
+          <li>S1 Psikologi</li>
+          <li>S1 Hukum</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2010</span>
+        <h3>Ekspansi Infrastruktur Akademik</h3>
+        <p>
+          UNPRI mendirikan gedung kampus baru di <strong>Jalan Brigjen Katamso</strong> sebagai bagian dari perluasan strategis
+          infrastruktur pendidikan dan teknologi—untuk mendukung pertumbuhan jumlah mahasiswa serta program akademik.
+        </p>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2012</span>
+        <h3>Pengembangan Rumah Sakit Pendidikan</h3>
+        <p>
+          UNPRI mendirikan <strong>Rumah Sakit Gigi dan Mulut Prima</strong> sebagai rumah sakit pendidikan untuk mendukung
+          pembelajaran klinik dan pelatihan program kesehatan. Pada tahun ini, UNPRI juga membuka:
+        </p>
+        <ul>
+          <li>S1 Kedokteran Gigi</li>
+          <li>Program Profesi Dokter Gigi</li>
+          <li>Program Profesi Keperawatan (Ners)</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2013–2014</span>
+        <h3>Berdirinya RS Royal Prima Medan</h3>
+        <p>
+          Berdirinya <strong>RS Royal Prima Medan</strong> menjadi tonggak penting, berkembang sebagai rumah sakit rujukan dan
+          wahana pendidikan klinik bagi mahasiswa kedokteran dan profesi kesehatan lainnya.
+          UNPRI juga menghadirkan <strong>Program Profesi Dokter</strong> dengan dukungan rumah sakit pendidikan milik universitas yang terintegrasi.
+        </p>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2016</span>
+        <h3>Penguatan Program Pascasarjana</h3>
+        <p>
+          UNPRI meluncurkan empat program magister sebagai bagian dari penguatan kualitas pendidikan tinggi dan
+          <em>pengembangan lintas disiplin</em>:
+        </p>
+        <ul>
+          <li>Magister Manajemen</li>
+          <li>Magister Akuntansi</li>
+          <li>Magister Hukum</li>
+          <li>Magister Pendidikan Bahasa Indonesia</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2017</span>
+        <h3>Diversifikasi Pascasarjana & Pembangunan Kampus Utama</h3>
+        <p>UNPRI memperkuat pendidikan pascasarjana melalui pembukaan:</p>
+        <ul>
+          <li>Magister Kesehatan Masyarakat</li>
+          <li>Magister Ilmu Biomedik</li>
+          <li>Magister Kenotariatan</li>
+        </ul>
+        <p style="margin-top:8px;">
+          Bersamaan dengan itu, UNPRI memulai pembangunan <strong>Kampus Utama</strong> untuk mendukung kualitas pembelajaran dan riset
+          dengan <em>fasilitas berstandar internasional</em>.
+        </p>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2018</span>
+        <h3>Pengembangan Program Strategis Bidang Kesehatan</h3>
+        <p>UNPRI meluncurkan lima program strategis:</p>
+        <ul>
+          <li>S1 Farmasi Klinis</li>
+          <li>S1 Kebidanan</li>
+          <li>Program Profesi Kebidanan</li>
+          <li>Magister Kedokteran Tropis</li>
+          <li>Magister Kedokteran Klinik</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2019</span>
+        <h3>Inisiatif Menjawab Kebutuhan Ilmiah & Profesional</h3>
+        <p>UNPRI meluncurkan tiga program akademik baru:</p>
+        <ul>
+          <li>Doktor Ilmu Kedokteran</li>
+          <li>Magister Ilmu Kedokteran Gigi</li>
+          <li>Sarjana Terapan Mandarin untuk Bisnis dan Komunikasi Profesional</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2020</span>
+        <h3>Pencapaian Akreditasi “A” Pertama</h3>
+        <p>
+          UNPRI meraih akreditasi <strong>“A”</strong> pertama untuk Program S1 Pendidikan Dokter dan Program Profesi Dokter—
+          menjadi langkah historis dalam penguatan mutu akademik.
+        </p>
+        <p style="margin-top:8px;">
+          Pada saat yang sama, UNPRI membuka <strong>Program Doktor Manajemen</strong> untuk memperkuat pendidikan jenjang doktoral.
+        </p>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2021</span>
+        <h3>Kampus Utama: Pusat Pendidikan, Riset & Kolaborasi Berstandar Internasional</h3>
+        <p>
+          UNPRI meresmikan Kampus Utama sebagai pusat pengembangan akademik modern. Gedung <strong>23 lantai</strong> dirancang dengan konsep fasilitas terintegrasi
+          untuk mendukung pendidikan, riset, dan kolaborasi—dengan ruang kelas dan laboratorium berstandar internasional, area mahasiswa, guest house,
+          pusat perbelanjaan (mall), serta <em>sky lounge</em> sebagai ruang diskusi dan kerja sama.
+        </p>
+        <p style="margin-top:8px;">UNPRI juga membuka:</p>
+        <ul>
+          <li>S1 Desain Komunikasi Visual</li>
+          <li>Doktor Hukum</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2022</span>
+        <h3>Akreditasi “Unggul” Program Studi & Program Spesialis Pertama</h3>
+        <p><strong>Prodi dengan Akreditasi “Unggul”:</strong></p>
+        <ul>
+          <li>Magister Ilmu Kedokteran Gigi</li>
+          <li>Magister Kedokteran Klinik</li>
+          <li>Doktor Ilmu Kedokteran</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Program Studi Baru:</strong></p>
+        <ul>
+          <li>Program Spesialis Kedokteran Keluarga dan Layanan Primer (SPKKLP)</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2023</span>
+        <h3>Perluasan Prodi “Unggul” & Pengembangan Jaringan Kampus</h3>
+        <p><strong>Prodi dengan Akreditasi “Unggul”:</strong></p>
+        <ul>
+          <li>Magister Kesehatan Masyarakat</li>
+          <li>Magister Kedokteran Tropis</li>
+          <li>Magister Kenotariatan</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Program Studi Baru:</strong></p>
+        <ul>
+          <li>Program Spesialis Radiologi</li>
+          <li>Program Pendidikan Profesi Apoteker</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Pendirian Kampus Cabang di Pekanbaru:</strong></p>
+        <ul>
+          <li>S1 Manajemen</li>
+          <li>S1 Psikologi</li>
+          <li>S1 Sistem Informasi</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2024</span>
+        <h3>Prestasi Nasional: Akreditasi Institusi “Unggul”</h3>
+        <p>
+          UNPRI memperoleh Akreditasi Institusi <strong>“Unggul”</strong> berdasarkan Lisensi No. <strong>510/SK/BAN-PT/Ak/PT/V/2024</strong>,
+          sebagai bukti penguatan mutu institusi dan program akademik.
+        </p>
+        <p style="margin-top:8px;"><strong>Prodi dengan Akreditasi “Unggul”:</strong></p>
+        <ul>
+          <li>S1 Manajemen</li>
+          <li>S1 Hukum</li>
+          <li>S1 Kesehatan Masyarakat</li>
+          <li>Magister Ilmu Biomedik</li>
+          <li>S1 Agribisnis</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Program Studi Baru:</strong></p>
+        <ul>
+          <li>Magister Keperawatan</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Pengembangan Kampus Cabang Pekanbaru:</strong></p>
+        <ul>
+          <li>S1 Pendidikan Dokter</li>
+          <li>Program Profesi Dokter</li>
+          <li>Magister Kesehatan Masyarakat</li>
+        </ul>
+      </article>
+
+      <article class="unpri-history__item" role="listitem">
+        <span class="unpri-history__year">2025</span>
+        <h3>Reputasi Global, Akreditasi Internasional & Kepemimpinan Program Spesialis</h3>
+        <p>
+          UNPRI masuk dalam <strong>QS Asia University Rankings</strong> dengan posisi global <strong>1.491</strong>.
+          Berdasarkan UniRank 2025, UNPRI berada di peringkat <strong>244</strong> nasional dan <strong>7.994</strong> global.
+        </p>
+
+        <p style="margin-top:8px;">
+          UNPRI menjadi universitas pertama di Indonesia yang memperoleh <strong>Akreditasi Internasional</strong> dari
+          Indonesian Accreditation Agency for Higher Education in Health (<strong>IAAHEH</strong>) untuk:
+        </p>
+        <ul>
+          <li>S1 Pendidikan Dokter</li>
+          <li>Program Profesi Dokter</li>
+        </ul>
+
+        <p style="margin-top:8px;"><strong>Prodi dengan Akreditasi “Unggul”:</strong></p>
+        <ul>
+          <li>S1 Teknik Informatika</li>
+          <li>Magister Hukum</li>
+          <li>Doktor Hukum</li>
+          <li>S1 Pendidikan Bahasa dan Sastra Indonesia</li>
+          <li>S1 Agroteknologi</li>
+        </ul>
+
+        <p style="margin-top:8px;">
+          UNPRI memperluas kontribusi pendidikan kesehatan melalui program spesialis dan profesi:
+        </p>
+        <ul>
+          <li>Spesialis Oftalmologi</li>
+          <li>Spesialis Kardiologi dan Kedokteran Vaskular</li>
+          <li>Spesialis Obstetri dan Ginekologi</li>
+          <li>Spesialis Anestesiologi dan Terapi Intensif</li>
+          <li>Spesialis Penyakit Dalam</li>
+          <li>Spesialis Bedah</li>
+          <li>Program Pendidikan Profesi Psikologi</li>
+        </ul>
+
+        <p style="margin-top:8px;">
+          Melalui capaian tersebut, UNPRI menegaskan posisinya sebagai <strong>perguruan tinggi swasta dengan jumlah program spesialis kedokteran terbanyak</strong>
+          di Indonesia—serta memperkuat peran strategis dalam pengembangan pendidikan tinggi <em>berstandar internasional</em>.
+        </p>
+      </article>
+
+    </div>
+
+    <!-- CAMPUSES -->
+    <div class="unpri-history__campus">
+      <h3>Lokasi Kampus</h3>
+
+      <p style="margin:0; font-size:14.4px; line-height:1.7; color:#111827;">
+        UNPRI terus bertumbuh dengan <strong>ekosistem pembelajaran terintegrasi</strong> yang didukung fasilitas modern dan jaringan
+        <em>rumah sakit pendidikan</em> di berbagai wilayah.
+      </p>
+
+      <p style="margin:10px 0 0; font-size:14.4px; line-height:1.7; color:#111827;">
+        <strong>Alamat Kampus Utama:</strong><br>
+        Jalan. Sampul Ayahanda No. 3, Sei Putih Barat, Medan Petisah, Medan, Sumatera Utara 20118
+      </p>
+
+      <div style="margin-top:12px; border:1px solid rgba(89,16,147,.14); background:#fff; padding:10px;">
+        <iframe
+          title="Peta Kampus Utama UNPRI"
+          src="https://www.google.com/maps?q=Jalan%20Sampul%20Ayahanda%20No.%203%2C%20Sei%20Putih%20Barat%2C%20Medan%20Petisah%2C%20Medan%2C%20Sumatera%20Utara%2020118&output=embed"
+          width="100%"
+          height="320"
+          frameborder="0"
+          style="border:0; display:block;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+        <div style="margin-top:8px; font-size:13.5px; line-height:1.6;">
+          <a
+            href="https://www.google.com/maps?q=Jalan%20Sampul%20Ayahanda%20No.%203%2C%20Sei%20Putih%20Barat%2C%20Medan%20Petisah%2C%20Medan%2C%20Sumatera%20Utara%2020118"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="color:#591093; font-weight:900; text-decoration:none;"
+          >Buka di Google Maps</a>
+        </div>
+      </div>
+
+      <img
+        src="https://s3.amazonaws.com/assets.unprimdn.ac.id/images/landing_page_images/f5f2a759e66715990166f7a70c75fc5426ee99cf.png"
+        alt="Lokasi Kampus UNPRI"
+      />
+    </div>
+
+  </div>
+</section>
+</body>
+</html>
