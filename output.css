@@ -652,6 +652,9 @@
   .border-\[\#591093\] {
     border-color: #591093;
   }
+  .border-\[\#591093\]\/60 {
+    border-color: color-mix(in oklab, #591093 60%, transparent);
+  }
   .border-\[\#D4AF37\] {
     border-color: #D4AF37;
   }
@@ -699,6 +702,9 @@
   }
   .bg-\[\#e4c4ff\] {
     background-color: #e4c4ff;
+  }
+  .bg-\[\#f4edfb\] {
+    background-color: #f4edfb;
   }
   .bg-\[\#faf7ef\] {
     background-color: #faf7ef;
